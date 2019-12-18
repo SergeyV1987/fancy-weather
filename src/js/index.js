@@ -43,7 +43,7 @@ function showInitialErr(err) {
 }
 
 function getWeatherByCoords(geoLat, geoLng) {
-    const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${geoLat}&lon=${geoLng}&APPID=${appKey}`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${geoLat}&lon=${geoLng}&APPID=${appKey}`;
 
     fetch(url)
         .then(response => response.json())
