@@ -17,16 +17,16 @@
         <input type="checkbox" value="none" id="set-temp" name="check" />
         <label for="set-temp"></label>
       </div>
-
       <h1 class="welcome">Welcome to Fancy-Weather</h1>
     </header>
-
     <div class="container-search">
       <form id="searchForm">
         <input type="text" id="cityInput" placeholder="Enter your city..." autofocus>
       </form>
+      <div>
+        <button class="search-btn" id="change-back">Change background</button>
+      </div>
     </div>
-
     <div class="content">
       <div class="weather-info animated" id="outPut">
         <div class="div-info">
@@ -36,6 +36,7 @@
         <div class="fore-cast" id="outPutForecast"></div>
       </div>
       <div class="map" id="map"></div>
+      <div class="disabled"></div>
     </div>
   </div>
 </body>

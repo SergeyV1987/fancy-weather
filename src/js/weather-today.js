@@ -26,14 +26,14 @@ function getWeatherToday(data) {
 
   details.innerHTML = `
           <h2 >${data.city.name}, ${data.city.country}</h2>
-           <section class="details-coord">
+           <div class="details-coord">
             <h3>Lat:${data.city.coord.lat}</h3>
             <h3>Lon:${data.city.coord.lon}</h3>
-          </section>
-          <section>
+          </div>
+          <div class="details-today">
             <h3>${getDateHour()}</h3>
             <h3>${cityCase(data.list[0].weather[0].description)}</h3>
-          </section>
+          </div>
           `;
 }
 

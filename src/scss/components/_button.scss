@@ -46,3 +46,19 @@
     }
   }
 }
+
+.search-btn {
+  margin-left: 10px;
+  height: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  width: 140px;
+  color: $color-white;
+  background-color: $bck-opacity;
+  border: none;
+  &:active {
+    background-color: $color-blue;
+  }
+}
+

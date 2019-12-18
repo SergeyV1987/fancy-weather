@@ -1,6 +1,5 @@
 import { getWeatherToday } from "./weather-today";
-import { forecastFahrenheit } from "./forecast-fahrenheit";
-import { forecastCelsius } from "./forecast-celsius";
+import { forecast } from "./forecast";
 import { clearInput } from "./clear-input";
 import { appKey } from "./token";
 import { showOutPut, hideOutPut } from "./show-hide";
@@ -8,6 +7,8 @@ import {showMap, rewriteMap} from "./map";
 
 let setTemp = document.getElementById("set-temp");
 document.querySelector("#searchForm").addEventListener("submit", getWeather);
+document.querySelector("#change-back").addEventListener("click", setBackgroundImage);
+document.querySelector("#set-temp").addEventListener("click", changeUnits);
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(showInitial, showInitialErr);
@@ -18,7 +19,6 @@ if (navigator.geolocation) {
 function showInitial(pos) {
   let geoLat = pos.coords.latitude.toFixed(5);
   let geoLng = pos.coords.longitude.toFixed(5);
-  let geoAcc = pos.coords.accuracy.toFixed(1);
   setBackgroundImage();
 
   getWeatherByCoords(geoLat, geoLng);
@@ -49,7 +49,7 @@ function getWeatherByCoords(geoLat, geoLng) {
         .then(response => response.json())
         .then(data => {
             getWeatherToday(data);
-            getWeatherWeek(data);
+            forecast(data);
         })
         .catch(err => console.log(err));
 }
@@ -60,15 +60,14 @@ function getWeather(e) {
   const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${appKey}`;
   hideOutPut();
 
-
   fetch(url)
     .then(response => response.json())
     .then(data => {
       setBackgroundImage(city);
       rewriteMap(data.city.coord.lat, data.city.coord.lon);
       getWeatherToday(data);
-      console.log('00000000000000', data);
-      getWeatherWeek(data);
+      forecast(data);
+      console.log('new', data);
         setInterval(function() {
             showOutPut()
         }, 500);
@@ -78,10 +77,6 @@ function getWeather(e) {
   e.preventDefault();
 }
 
-function getWeatherWeek(data) {
-    setTemp.checked === false ? forecastFahrenheit(data) : forecastCelsius(data)
-}
-
 function setBackgroundImage(city) {
   const url = `https://api.unsplash.com/photos/random?query=town,${city}&client_id=949d309a09bedbc642b2a762c9aa8c50bd9e64125b0d961bfc2ab6c3b5f81318`;
   fetch(url)
@@ -89,6 +84,19 @@ function setBackgroundImage(city) {
       .then(data => {
         document.getElementsByClassName('main')[0].style.backgroundImage = `url(${data.urls.regular})`;
       });
+}
+
+function changeUnits() {
+    let fUnit = document.querySelectorAll(".f-temp");
+    let cUnit = document.querySelectorAll(".c-temp");
+
+    if (setTemp.checked === true) {
+        fUnit.forEach(u => u.classList.add('disabled'));
+        cUnit.forEach(u => u.classList.remove('disabled'));
+    } else {
+        fUnit.forEach(u => u.classList.remove('disabled'));
+        cUnit.forEach(u => u.classList.add('disabled'));
+    }
 }
 
 

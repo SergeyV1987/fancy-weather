@@ -1,6 +1,8 @@
 .container-search {
-  text-align: center;
+  display: flex;
+  justify-content: center;
   margin-bottom: 30px;
+
   input[type="text"] {
     border: none;
     width: 180px;
@@ -10,6 +12,7 @@
     border-radius: 4px;
     color: $color-white;
     font-size: 0.8rem;
+
     &::-webkit-input-placeholder {
       color: $color-white;
       text-align: center;
@@ -22,6 +25,7 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+
   .weather-info {
     display: block;
     padding: 10px;
@@ -32,6 +36,7 @@
     background-color: $bck-opacity;
     color: $color-white;
     animation-duration: 2s;
+
     .div-info {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -52,6 +57,7 @@
           font-size: 1.2rem;
           text-align: right;
         }
+
       }
       .details {
         text-align: right;
@@ -65,11 +71,10 @@
         h3 {
           padding-right: 15px;
         }
-        .details-coord {
-          margin-bottom: 25px;
-        }
+
       }
     }
+
     .fore-cast {
       text-align: center;
       display: grid;
@@ -95,6 +100,7 @@
       }
     }
   }
+
   .map {
     width: 400px;
     height: 310px;
@@ -106,6 +112,6 @@
   }
 }
 
-
-
-
+.disabled {
+  display: none;
+}
